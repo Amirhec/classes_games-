@@ -2,11 +2,45 @@ require "./board.rb"
 require "./player.rb"
 class Game
 
-    def initialize(mark_1,mark_2)
-        @player_1 = Player.new(mark_1)
-        @player_2 = Player.new(mark_2)
-        @current_player = @player_1 
-        @board = Board.new 
+
+    def initialize
+
+    system "clear "
+
+    puts dramatic("Welcome to Tic Tac Toe!")
+
+    puts dramatic("Player 1, what is your name?")
+    player_1_name = gets.chomp.to_s.strip
+
+    system "clear "
+
+    puts dramatic("#{player_1_name}, what will your mark be?")
+    player_1_mark = gets.chomp.to_s.strip
+
+    system "clear "
+
+    puts dramatic("Player 2, what is your name?")
+    player_2_name = gets.chomp.to_s.strip
+
+    system "clear "
+
+    puts dramatic("#{player_2_name}, what will your mark be?")
+    player_2_mark = gets.chomp.to_s.strip
+
+    @player_1 = Player.new(player_1_name, player_1_mark)
+    @player_2 = Player.new(player_2_name, player_2_mark)
+
+    @current_player = @player_1 
+
+    puts dramatic("What do you want the size of the board to be?")
+
+    num = gets.chomp.to_i
+    
+    @board = Board.new(num)
+
+    system "clear"
+
+    game_play
 
     end
 
@@ -19,8 +53,18 @@ class Game
         end
     end
 
+    def dramatic(string)
+        i = 0 
+            while i < string.length 
+                print string[i] 
+                sleep 0.05
+                i+=1
+            end
+    end
+
 
     def game_play
+
         while @board.board_full? == false
             system "clear"
             @board.show_board
@@ -40,7 +84,7 @@ class Game
             end
 
             if @board.winner?(@current_player.mark)
-                puts " player #{@current_player.mark.to_s} has won"
+                puts "player #{@current_player.name.to_s} has won"
                 break 
 
             else 
@@ -57,7 +101,7 @@ class Game
        choice = gets.chomp.to_s
 
        if choice === "y"
-        new_game = Game.new("O","X")
+        new_game = Game.new
         new_game.game_play
        else
 

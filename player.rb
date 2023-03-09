@@ -1,31 +1,21 @@
-class Player 
-    attr_reader :mark 
-
-    def initialize(mark) 
-        @mark = mark 
+class Player
+    attr_reader :name, :mark
+  
+    def initialize(name, mark)
+      @name = name
+      @mark = mark
     end
-
-
+  
     def get_position
-
-        puts "Player #{mark.to_s}, enter the row and column you want to place your mark"
-
+      puts "#{name}, enter the row and column you want to place your mark (e.g. '1 2')"
+      pos = gets.chomp.split(" ").map(&:to_i)
+  
+      until pos.length == 2
+        puts "Invalid position. #{name}, enter the row and column you want to place your mark (e.g. '1 2')"
         pos = gets.chomp.split(" ").map(&:to_i)
-
-        if pos.length != 2 
-            raise "sorry, invalid position try again"
-            
-        end
-
-        return pos
-
-      
-
+      end
+  
+      pos
     end
-
-
-
-
-
-
-end
+  end
+  
