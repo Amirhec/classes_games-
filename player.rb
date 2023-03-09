@@ -10,10 +10,11 @@ class Player
 
         puts "Player #{mark.to_s}, enter the row and column you want to place your mark"
 
-        pos = gets.chomp.split(" ").map(&to_i)
+        pos = gets.chomp.split(" ").map(&:to_i)
 
         if pos.length != 2 
             raise "sorry, invalid position try again"
+            
         end
 
         return pos

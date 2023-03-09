@@ -2,7 +2,7 @@ class Board
     
 
     def initialize(size = 3)
-        @board = Array.new(size,"_"){Array.new(size,"_")}
+        @board = Array.new(size){Array.new(size,"_")}
         size 
     end
 
@@ -14,11 +14,8 @@ class Board
         
     end
 
-    def empty?(pos)
-        self[pos] == "_"
-    end
-
     def place_mark(pos,mark)
+
         row = pos[0]
         col = pos[1]
 
@@ -29,7 +26,7 @@ class Board
         row = pos[0]
         col = pos[1]
 
-        if @board[row][col] != nil 
+        if row >= 0 && row < @board.length && col >= 0 && col < @board[0].length && @board[row][col] == "_"
             return true
 
         else
@@ -40,7 +37,7 @@ class Board
 
   
 
-    def horizinatal_winner?(mark)
+    def horizontal_winner?(mark)
         @board.any? do |row|
             row.all?(mark)
         end
@@ -91,8 +88,8 @@ class Board
     end
 
 
-    def game_over?
-        if horizintal_winner?(mark) || vertical_winner?(mark) || diagonal_winner?(mark)
+    def winner?(mark)
+        if horizontal_winner?(mark) || vertical_winner?(mark) || diagonal_winner?(mark)
             return true 
         end
 
