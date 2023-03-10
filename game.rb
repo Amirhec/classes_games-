@@ -32,9 +32,13 @@ class Game
 
     @current_player = @player_1 
 
+    system "clear"
+
     puts dramatic("What do you want the size of the board to be?")
 
     num = gets.chomp.to_i
+
+    
     
     @board = Board.new(num)
 

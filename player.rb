@@ -7,11 +7,11 @@ class Player
     end
   
     def get_position
-      puts "#{name}, enter the row and column you want to place your mark (e.g. '1 2')"
+      puts "#{@name}, enter the row and column you want to place your mark (example:  '1 2')"
       pos = gets.chomp.split(" ").map(&:to_i)
   
       until pos.length == 2
-        puts "Invalid position. #{name}, enter the row and column you want to place your mark (e.g. '1 2')"
+        puts "Invalid position. #{@name}, enter the row and column you want to place your mark (example: '1 2')"
         pos = gets.chomp.split(" ").map(&:to_i)
       end
   
